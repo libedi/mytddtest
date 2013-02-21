@@ -1,24 +1,49 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import main.Account;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class AccountTest {
 	
-	public void testAccount() throws Exception{
-		Account account = new Account();
-		if( account != null ){
-			throw new Exception("계좌생성 실패!");
-		}
+	private Account account;
+
+	@Before
+	public void setup() {
+		account = new Account(10000);
 	}
 	
-	public static void main(String args[]){
-		AccountTest test = new AccountTest();
-		try {
-			test.testAccount();		// 테스트 케이스 실행
-		} catch (Exception e) {
-			System.out.println("실패(X)");		// 예외가 발생하면 실패(X)
-			return;
-		}
-		System.out.println("성공(O)");
+	@Test
+	public void testAccount() throws Exception{
+//		setup();
 	}
+
+	@Test
+	public void testGetBalance() throws Exception {
+//		setup();
+		assertEquals("10000원으로 계좌 생성 후, 잔고 조회", 10000, account.getBalance());
+		
+		account = new Account(1000);
+		assertEquals(1000, account.getBalance());
+		
+		account = new Account(0);
+		assertEquals(0, account.getBalance());
+	}
+	
+	@Test
+	public void testDeposit() throws Exception {
+//		setup();
+		account.deposit(1000);
+		assertEquals(11000, account.getBalance());
+	}
+	
+	@Test
+	public void testWithdraw() throws Exception {
+//		setup();
+		account.withdraw(1000);
+		assertEquals(9000, account.getBalance());
+	}
+	
 }
