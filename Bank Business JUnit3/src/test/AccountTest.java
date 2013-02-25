@@ -1,6 +1,7 @@
-package main;
+package test;
 
 import junit.framework.TestCase;
+import main.Account;
 
 public class AccountTest extends TestCase {		// TestCase ¸¦ »ó¼Ó.
 
