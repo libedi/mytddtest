@@ -1,7 +1,6 @@
-package test;
+package bank;
 
 import static org.junit.Assert.assertEquals;
-import main.Account;
 
 import org.junit.Before;
 import org.junit.Test;
