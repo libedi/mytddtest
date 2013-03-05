@@ -3,19 +3,19 @@ package test;
 import junit.framework.TestCase;
 import main.Account;
 
-public class AccountTest extends TestCase {		// TestCase ¸¦ »ó¼Ó.
+public class AccountTest extends TestCase {		// TestCase ë¥¼ ìƒì†.
 
-	private Account account;			// ÅØ½ºÆ® ÇÈ½ºÃÄ Á¤ÀÇ
+	private Account account;			// í…ìŠ¤íŠ¸ í”½ìŠ¤ì³ ì •ì˜
 
 	public void testAccount() {
 	}
 	
 	@Override
 	protected void setUp() throws Exception{
-		account = new Account(10000);			// setUp() ¸Ş¼­µå¸¦ »ç¿ëÇØ ÇÈ½ºÃÄ »óÅÂ ÃÊ±âÈ­
+		account = new Account(10000);			// setUp() ë©”ì„œë“œë¥¼ ì‚¬ìš©í•´ í”½ìŠ¤ì³ ìƒíƒœ ì´ˆê¸°í™”
 	}
 
-	public void testGetBalance() {			// ÀÌ¸§ÀÌ test·Î ½ÃÀÛÇÏ´Â Å×½ºÆ® ÄÉÀÌ½º ÀÛ¼º
+	public void testGetBalance() {			// ì´ë¦„ì´ testë¡œ ì‹œì‘í•˜ëŠ” í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ì‘ì„±
 		assertEquals(10000, account.getBalance());
 		
 		account = new Account(20000);
@@ -36,7 +36,7 @@ public class AccountTest extends TestCase {		// TestCase ¸¦ »ó¼Ó.
 	}
 
 	@Override
-	protected void tearDown() throws Exception {		// tearDown() : Å×½ºÆ®¸¦ ¸¶Ä£ ´ÙÀ½ ÇÈ½ºÃ³¸¦ Á¤¸®ÇÒ ÄÚµå ÀÛ¼º.
+	protected void tearDown() throws Exception {		// tearDown() : í…ŒìŠ¤íŠ¸ë¥¼ ë§ˆì¹œ ë‹¤ìŒ í”½ìŠ¤ì²˜ë¥¼ ì •ë¦¬í•  ì½”ë“œ ì‘ì„±.
 		super.tearDown();
 	}
 	

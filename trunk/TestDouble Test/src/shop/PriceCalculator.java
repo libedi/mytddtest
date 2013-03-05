@@ -3,9 +3,9 @@ package shop;
 public class PriceCalculator {
 
 	public int getOrderPrice(Item item, ICoupon coupon) {
-		// ÄíÆùÀÌ À¯È¿ÇÏ°í Àû¿ë°¡´ÉÇÏ¸é
+		// ì¿ í°ì´ ìœ íš¨í•˜ê³  ì ìš©ê°€ëŠ¥í•˜ë©´
 		if(coupon.isValid() && coupon.isAppliable(item)) {
-			return (int) (item.getPrice() * getDiscountRate(coupon.getDiscountPercent()));		// ÄíÆùÀÇ ÇÒÀÎÀ²À» Àû¿ëÇÑ´Ù.
+			return (int) (item.getPrice() * getDiscountRate(coupon.getDiscountPercent()));		// ì¿ í°ì˜ í• ì¸ìœ¨ì„ ì ìš©í•œë‹¤.
 		}
 		
 		return item.getPrice();
@@ -13,7 +13,7 @@ public class PriceCalculator {
 
 	private double getDiscountRate(int discountPercent) {
 		// TODO Auto-generated method stub
-		return (100 - discountPercent) / 100d;		// int ¿¬»êÀÌ ¾ÈµÇµµ·Ï d¸¦ ºÙÀÓ
+		return (100 - discountPercent) / 100d;		// int ì—°ì‚°ì´ ì•ˆë˜ë„ë¡ dë¥¼ ë¶™ì„
 	}
 
 }
