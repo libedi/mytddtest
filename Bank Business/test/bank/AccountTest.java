@@ -22,7 +22,7 @@ public class AccountTest {
 	@Test
 	public void testGetBalance() throws Exception {
 //		setup();
-		assertEquals("10000¿øÀ¸·Î °èÁÂ »ı¼º ÈÄ, ÀÜ°í Á¶È¸", 10000, account.getBalance());
+		assertEquals("10000ì›ìœ¼ë¡œ ê³„ì¢Œ ìƒì„± í›„, ì”ê³  ì¡°íšŒ", 10000, account.getBalance());
 		
 		account = new Account(1000);
 		assertEquals(1000, account.getBalance());

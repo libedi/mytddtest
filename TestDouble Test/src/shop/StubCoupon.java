@@ -1,7 +1,7 @@
 /**
  * Test Stub
- * - ´õ¹Ì °´Ã¼°¡ ¸¶Ä¡ ½ÇÁ¦·Î µ¿ÀÛÇÏ´Â °ÍÃ³·³ º¸ÀÌ°Ô ¸¸µé¾î³õÀº °´Ã¼´Ù.
- * - ½ÇÁ¦·Î ½ºÅÓÀ» »ç¿ëÇÒ ¶§´Â Å×½ºÆ®¿¡ ÇÊ¿äÇÑ ¸Ş¼­µå ºÎºĞ¸¸ ÇÏµåÄÚµùÇÏ¸é µÈ´Ù.
+ * - ë”ë¯¸ ê°ì²´ê°€ ë§ˆì¹˜ ì‹¤ì œë¡œ ë™ì‘í•˜ëŠ” ê²ƒì²˜ëŸ¼ ë³´ì´ê²Œ ë§Œë“¤ì–´ë†“ì€ ê°ì²´ë‹¤.
+ * - ì‹¤ì œë¡œ ìŠ¤í…ì„ ì‚¬ìš©í•  ë•ŒëŠ” í…ŒìŠ¤íŠ¸ì— í•„ìš”í•œ ë©”ì„œë“œ ë¶€ë¶„ë§Œ í•˜ë“œì½”ë”©í•˜ë©´ ëœë‹¤.
  */
 package shop;
 
@@ -10,7 +10,7 @@ public class StubCoupon implements ICoupon {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "VIP °í°´ ÇÑ°¡À§ °¨»çÄíÆù";
+		return "VIP ê³ ê° í•œê°€ìœ„ ê°ì‚¬ì¿ í°";
 	}
 
 	@Override
@@ -27,9 +27,9 @@ public class StubCoupon implements ICoupon {
 
 	@Override
 	public boolean isAppliable(Item item) {
-		if(item.getCategory().equals("ºÎ¾ıÄ®")) {
+		if(item.getCategory().equals("ë¶€ì—Œì¹¼")) {
 			return true;
-		} else if(item.getCategory().equals("¾Ë¶÷½Ã°è")) {
+		} else if(item.getCategory().equals("ì•ŒëŒì‹œê³„")) {
 			return false;
 		}
 		return true;

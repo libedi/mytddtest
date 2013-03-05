@@ -1,9 +1,9 @@
 package shop;
 
 public interface ICoupon {
-	public String getName();						// ÄíÆù ÀÌ¸§
-	public boolean isValid();						// ÄíÆù À¯È¿ ¿©ºÎ È®ÀÎ
-	public int getDiscountPercent();				// ÇÒÀÎÀ²
-	public boolean isAppliable(Item item);	// ÇØ´ç ¾ÆÀÌÅÛ¿¡ Àû¿ë °¡´É ¿©ºÎ
-	public void doExpire();							// »ç¿ëÇÒ ¼ö ¾ø´Â ÄíÆùÀ¸·Î ¸¸µê
+	public String getName();						// ì¿ í° ì´ë¦„
+	public boolean isValid();						// ì¿ í° ìœ íš¨ ì—¬ë¶€ í™•ì¸
+	public int getDiscountPercent();				// í• ì¸ìœ¨
+	public boolean isAppliable(Item item);	// í•´ë‹¹ ì•„ì´í…œì— ì ìš© ê°€ëŠ¥ ì—¬ë¶€
+	public void doExpire();							// ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ì¿ í°ìœ¼ë¡œ ë§Œë“¦
 }

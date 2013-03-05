@@ -8,12 +8,12 @@ public class UserTest {
 	@Test
 	public void testAddCoupon() throws Exception {
 		User user = new User("libedi");
-		assertEquals("ÄíÆù ¼ö·É Àü", 0, user.getTotalCouponCount());
+		assertEquals("ì¿ í° ìˆ˜ë ¹ ì „", 0, user.getTotalCouponCount());
 		
 		ICoupon coupon = new DummyCoupon();
 		
 		user.addCoupon(coupon);
-		assertEquals("ÄíÆù ¼ö·É ÈÄ", 1, user.getTotalCouponCount());
+		assertEquals("ì¿ í° ìˆ˜ë ¹ í›„", 1, user.getTotalCouponCount());
 	}
 	
 	@Test
@@ -23,35 +23,35 @@ public class UserTest {
 		user.addCoupon(coupon);
 		ICoupon lastCoupon = user.getLastOccupiedCoupon();
 		
-		assertEquals("ÄíÆù ÇÒÀÎÀ²", 7, lastCoupon.getDiscountPercent());
-		assertEquals("ÄíÆù ÀÌ¸§", "VIP °í°´ ÇÑ°¡À§ °¨»çÄíÆù", lastCoupon.getName());
+		assertEquals("ì¿ í° í• ì¸ìœ¨", 7, lastCoupon.getDiscountPercent());
+		assertEquals("ì¿ í° ì´ë¦„", "VIP ê³ ê° í•œê°€ìœ„ ê°ì‚¬ì¿ í°", lastCoupon.getName());
 	}
 	
 	@Test
 	public void testGetOrderPrice_discountableItem() throws Exception {
 		PriceCalculator calculator = new PriceCalculator();
-		// new Item(ÀÌ¸§, Ä«Å×°í¸®, °¡°İ)
-		Item item = new Item("LightSavor", "ºÎ¾ıÄ®", 100000);
+		// new Item(ï¿½Ì¸ï¿½, Ä«ï¿½×°?, ï¿½ï¿½ï¿½ï¿½)
+		Item item = new Item("LightSavor", "ë¶€ì—Œì¹¼", 100000);
 		ICoupon coupon = new StubCoupon();
 		
-		assertEquals("ÄíÆùÀ¸·Î ÀÎÇØ ÇÒÀÎµÈ °¡°İ", 93000, calculator.getOrderPrice(item, coupon));
+		assertEquals("ì¿ í°ìœ¼ë¡œ ì¸í•´ í• ì¸ëœ ê°€ê²©", 93000, calculator.getOrderPrice(item, coupon));
 		
 		ICoupon otherCoupon = new FakeCoupon();
 		
-		assertEquals("ÄíÆùÀ¸·Î ÀÎÇØ ÇÒÀÎµÈ °¡°İ", 93000, calculator.getOrderPrice(item, otherCoupon));
+		assertEquals("ì¿ í°ìœ¼ë¡œ ì¸í•´ í• ì¸ëœ ê°€ê²©", 93000, calculator.getOrderPrice(item, otherCoupon));
 	}
 	
 	@Test
 	public void testGetOrderPrice_undiscountableItem() throws Exception {
 		PriceCalculator calculator = new PriceCalculator();
-		Item item = new Item("R2D2", "¾Ë¶÷½Ã°è", 20000);
+		Item item = new Item("R2D2", "ì•ŒëŒì‹œê³„", 20000);
 		ICoupon coupon = new StubCoupon();
 		
-		assertEquals("ÄíÆù Àû¿ë ¾ÈµÇ´Â ¾ÆÀÌÅÛ", 20000, calculator.getOrderPrice(item, coupon));
+		assertEquals("ì¿ í° ì ìš© ì•ˆë˜ëŠ” ì•„ì´í…œ", 20000, calculator.getOrderPrice(item, coupon));
 		
 		ICoupon otherCoupon = new FakeCoupon();
 		
-		assertEquals("ÄíÆù Àû¿ë ¾ÈµÇ´Â ¾ÆÀÌÅÛ", 20000, calculator.getOrderPrice(item, otherCoupon));
+		assertEquals("ì¿ í° ì ìš© ì•ˆë˜ëŠ” ì•„ì´í…œ", 20000, calculator.getOrderPrice(item, otherCoupon));
 	}
 	
 }
