@@ -59,7 +59,7 @@ public class DatabaseRepositoryTest {
 	@Test
 	public void testFindById() throws Exception {
 		// given : 선행조건 기술
-		Seller expectedSeller = new Seller("horichoi", "최승호",
+		Seller expectedSeller = new Seller("horichoi", "sh.choi",
 				"megaseller@hatmail.com");
 
 		// when : 기능 수행
