@@ -68,8 +68,29 @@ public class DatabaseRepository implements Repository {
 
 	@Override
 	public void add(Seller seller) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement pstmt = null;		
+		try {
+			String query = "insert into seller values(?, ?, ?)";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, seller.getId());
+			pstmt.setString(2, seller.getName());
+			pstmt.setString(3, seller.getEmail());
+			int result = pstmt.executeUpdate();
+			if( result == 0 ){
+				throw new SQLException("Data was not inserted!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if( pstmt != null ) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
