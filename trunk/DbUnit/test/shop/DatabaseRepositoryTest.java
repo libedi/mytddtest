@@ -7,11 +7,13 @@ import java.io.File;
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.SortedTable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +24,8 @@ public class DatabaseRepositoryTest {
 	private final String dbName = "shopdb";
 
 	// IDatabaseTest : DbUnit 라이브러리의 인터페이스. DB연결과 데이터셋 관련 기능 정의.
-	private IDatabaseTester databaseTester; 
+	private IDatabaseTester databaseTester;
+	private IDatabaseConnection connection;
 
 	/*
 	 * 테스트 메서드를 수행하기 전에 seller.xml에 지정된 상태로 테이블을 초기화.
@@ -43,20 +46,22 @@ public class DatabaseRepositoryTest {
 		 */
 		databaseTester = new JdbcDatabaseTester(driver, protocol + dbName);
 
-		try {
-			// 데이터셋 지정.
-			IDataSet dataSet = new FlatXmlDataSetBuilder().build(new File(
-					"seller.xml"));
-			/* 
-			 * DB 커넥션과 데이터셋을 이용해 DB에 특정 작업을 수행.
-			 * CLEAN_INSERT : 데이터셋에 지정된 DB테이블 내용 모두 삭제 -> 데이터셋에 들어있는 값으로 INSERT
-			 * 						: DELETE_ALL + INSERT
-			 */
-			DatabaseOperation.CLEAN_INSERT.execute(
-					databaseTester.getConnection(), dataSet);
-		} finally {
-			databaseTester.getConnection().close();
-		}
+		// 데이터셋 지정.
+		IDataSet dataSet = new FlatXmlDataSetBuilder().build(new File(
+				"seller.xml"));
+			
+		connection = this.databaseTester.getConnection();
+		/* 
+		 * DB 커넥션과 데이터셋을 이용해 DB에 특정 작업을 수행.
+		 * CLEAN_INSERT : 데이터셋에 지정된 DB테이블 내용 모두 삭제 -> 데이터셋에 들어있는 값으로 INSERT
+		 * 						: DELETE_ALL + INSERT
+		 */
+		DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		this.connection.close();
 	}
 
 	@Test
