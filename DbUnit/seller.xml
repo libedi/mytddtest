@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataset>
-	<!-- 요소는 DB테이블명, 속성은 컬럼명 -->
-	<seller ID="horichoi" NAME="sh.choi" EMAIL="megaseller@hatmail.com" />
-	<seller ID="buymore" NAME="yj.kim" EMAIL="shopper@nineseller.com" />
-	<seller ID="mattwhew" NAME="js.lee" EMAIL="admin@maximumsale.net" />
-</dataset>
