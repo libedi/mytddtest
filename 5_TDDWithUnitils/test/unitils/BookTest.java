@@ -7,12 +7,16 @@
  */
 package unitils;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;		// assertReflectionEquals()
-import static org.unitils.reflectionassert.ReflectionComparatorMode.*;						// LENIENT ASSERTION
+import static org.unitils.reflectionassert.ReflectionAssert.assertLenientEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.assertPropertyLenientEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
+import static org.unitils.reflectionassert.ReflectionComparatorMode.IGNORE_DEFAULTS;
+import static org.unitils.reflectionassert.ReflectionComparatorMode.LENIENT_DATES;
+import static org.unitils.reflectionassert.ReflectionComparatorMode.LENIENT_ORDER;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -56,6 +60,7 @@ public class BookTest {
 		 * - int			-> 0
 		 * - Object		-> null
 		 * - boolean	-> false
+		 * 
 		 * 주의할 점 : 필드 기본값 제외는 "예상 객체" 를 기준으로 한다!
 		 * ( Fail !!! )
 		 * Book expectedObject = new Book("사람은 무엇으로 사는가?", "톨스토이", 9000);
@@ -66,12 +71,49 @@ public class BookTest {
 	
 	@Test
 	public void testLenientDates() throws Exception {
-		// given	: 선행조건 기술
-		
+		Book expectedObject = new Book("사람은 무엇으로 사는가?", null, 9000,
+				new Date(System.currentTimeMillis() + 100));
+		Book actualObject = new Book("사람은 무엇으로 사는가?", null, 9000,
+				new Date(System.currentTimeMillis()));
 
-		// when	: 기능 수행
-
-		// then	: 결과 확인
-
+		/*
+		 * 로그성으로 기록되는 날짜를 비교하지 않게 할 수 있다.
+		 */
+		assertReflectionEquals(expectedObject, actualObject, LENIENT_DATES);
 	}
+	
+	@Test
+	public void testAssertLenientEquals() throws Exception {
+		/*
+		 * assertLenientEquals();
+		 * - LENIENT_ORDER, IGNORE_DEFAULTS 두 개를 적용가능.
+		 */
+		// 컬렉션 순서가 다른 경우
+		List<Integer> bag = Arrays.asList(100, 200, 300);
+		assertLenientEquals(Arrays.asList(300, 200, 100), bag);
+		
+		// 배열의 순서가 다른 경우
+		assertLenientEquals(new String[]{"a", "b", "c"}, new String[]{"b", "c", "a"});
+		
+		// 필드값이 타입 기본값일 경우 비교에서 제외
+		Book expectedObject = new Book("사람은 무엇으로 사는가?", null, 9000);
+		Book actualObject = new Book("사람은 무엇으로 사는가?", "톨스토이", 9000);
+		assertLenientEquals(expectedObject, actualObject);
+	}
+	
+	@Test
+	public void testPlayerPropertyTest() throws Exception {
+//		Player player = VolleyballTeamRepository.getCaptain();		// 저장소에서 주장 캐릭터의 정보를 불러온다.
+		Player player = new Player("Sangjun Park", 31, 4);
+
+		/*
+		 * assertPropertyLenientEquals( 필드명, 예상되는 필드값, 실제 객체 );
+		 * - 객체의 필드값을 비교할 때 사용한다.
+		 * - 객체의 getter 메서드가 없을때 필드를 비교할 떄 사용하면 편리.
+		 * - JavaBeans 규약을 따르고 있기 때문에, 후일 객체에 getter 메서드가 생성되면 해당 getter 메서드를 이용해 비교. 
+		 */
+		assertPropertyLenientEquals("age", 31, player);
+		assertPropertyLenientEquals("experienceYear", 4, player);
+	}
+	
 }
