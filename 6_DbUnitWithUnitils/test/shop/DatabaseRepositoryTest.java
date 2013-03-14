@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.dbunit.annotation.DataSet;
 
-
 @RunWith(UnitilsJUnit4TestClassRunner.class)		
 @DataSet							
 public class DatabaseRepositoryTest {
